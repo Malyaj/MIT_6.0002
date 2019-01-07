@@ -31,4 +31,27 @@ class edge(object):
 
 
 class digraph():
-    pass
+    """edges is a dict mapping each node to a list of
+    its children"""
+
+    def __init__(self):
+        self.edges = {}
+
+    def addNode(self, node):
+        if node in self.edges:
+            raise ValueError('Duplicate Node')
+        else:
+            self.edges[node] = []
+
+    def addEdge(self, edge):
+        source = edge.getSource()
+        destination = edge.getDestination()
+
+        if not (source in self.edges and destination in self.edges):
+            raise ValueError('Node not in graph')
+        self.edges[source].append(destination)
+
+
+
+
+        

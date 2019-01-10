@@ -89,3 +89,37 @@ class Poly(object):
             return integral_at_1 - integral_at_0
         else:
             raise ValueError("Error: invalid ")
+    
+    def __add__(self, other):
+        '''assuming other is another Poly object'''
+        assert type(other) is Poly
+        
+        for exp in other.elems.keys():
+            if exp in self.elems.keys():
+                self.elems[exp] += other.elems[exp]
+            else:
+                self.elems[exp] = other.elems[exp]
+        return Poly(self.elems, self.name, self.description)
+    
+    def __rmul__(self, other):
+        new_elems = {}
+        
+        assert type(other) in [int, float]
+        
+        for exp in self.elems.keys():
+            new_elems[exp] = self.elems[exp] * other
+        return Poly(new_elems, self.name, self.description)
+    
+    def __mul__(self, other):
+        new_elems = {}
+        assert type(other) is Poly
+        
+        for exp in other.elems.keys():
+            for self_exp in self.elems.keys():
+                if (exp + self_exp) not in new_elems:
+                    new_elems[exp+self_exp] = self.elems[self_exp] * other.elems[exp]
+                else:
+                    new_elems[exp+self_exp] += (self.elems[self_exp] * other.elems[exp])
+            #new code goes here
+        return Poly(new_elems, self.name, self.description)
+

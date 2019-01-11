@@ -215,3 +215,6 @@ while True:
 
 window.Close()
 
+## this needs to be more modular
+## explore how to import a function from another file
+

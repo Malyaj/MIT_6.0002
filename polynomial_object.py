@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# polynomial object
+# polynomial object with various functionalities
 
 class Poly(object):
     '''creating a polynomial object'''
